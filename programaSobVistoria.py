@@ -13,10 +13,11 @@ except ImportError:  # python3.x
 dados = openpyxl.load_workbook('C:\\gomnet.xlsx')
 login = dados['Plan1']
 url = 'http://gomnet.ampla.com/'
+url2 = 'http://gomnet.ampla.com/ProgramarObra.aspx'
 username = login['A1'].value
 password = login['A2'].value
-wb = openpyxl.load_workbook('sobs.xlsx')
-wb1 = openpyxl.load_workbook('sobs.xlsx')
+wb = openpyxl.load_workbook('sobs.xlsm')
+wb1 = openpyxl.load_workbook('sobs.xlsm')
 
 driver = webdriver.Chrome()
 
@@ -30,10 +31,8 @@ if __name__ == '__main__':
     submit_button = driver.find_element_by_id('ImageButton_Login').click()
 
     for sheet in wb.worksheets:
-        # Busca o menu "Obras" e acessa o submenu "Acompanhamento de Obra"
-        menu = driver.find_element_by_class_name('ctl00_Menu_GomNet_3')
-        hidden_submenu = driver.find_element_by_xpath('//*[@id="ctl00_Menu_GomNetn12"]/td/table/tbody/tr/td/a')
-        webdriver.ActionChains(driver).move_to_element(menu).click(hidden_submenu).perform()
+        # Acessa o endereço "Programação das Obras"
+        driver.get(url2)
 
         # Insere o valor na textbox "Número SOB" e realiza a consulta
         sob = driver.find_element_by_name('ctl00$ContentPlaceHolder1$TextBox_NumSOB')
@@ -144,7 +143,7 @@ if __name__ == '__main__':
                     webdriver.ActionChains(driver).send_keys(Keys.TAB).perform()
                     webdriver.ActionChains(driver).send_keys(str(cell2.value)).perform()
                 except NoSuchElementException:  # Caso não encontre, abre o arquivo txt e registra o código baremo e sua quantidade
-                    log = open("BaremosPendentes.txt", "a")
+                    log = open("BaremosPendentesVistoria.txt", "a")
                     log.write(str(sheet['A2'].value) + " " + str(cell.value) + " " + str(cell2.value) + "\n")
                     log.close()
                 continue
