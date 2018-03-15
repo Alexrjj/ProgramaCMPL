@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import openpyxl
+import os
+import shutil
 from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -9,6 +11,16 @@ try:
 except ImportError:  # python3.x
     izip = zip
 
+if os.path.isfile('VincSupVist.xlsm'):  # Verifica se o arquivo existe, caso sim, deleta a versão antiga e cria nova cópia
+    os.remove('VincSupVist.xlsm')
+    shutil.copy2('ProgramaSobsVistoria - Template.xlsm', 'VincSupVist.xlsm')
+    os.startfile('VincSupVist.xlsm')
+else:  # Caso não existe, apenas cria nova cópia
+    shutil.copy2('ProgramaSobsVistoria - Template.xlsm', 'VincSupVist.xlsm')
+    os.startfile('VincSupVist.xlsm')
+
+input('Enter any key to continue...')
+
 #  Acessa os dados de login fora do script, salvo numa planilha existente, para proteger as informações de credenciais
 dados = openpyxl.load_workbook('C:\\gomnet.xlsx')
 login = dados['Plan1']
@@ -16,8 +28,8 @@ url = 'http://gomnet.ampla.com/'
 url2 = 'http://gomnet.ampla.com/ProgramarObra.aspx'
 username = login['A1'].value
 password = login['A2'].value
-wb = openpyxl.load_workbook('sobs.xlsm')
-wb1 = openpyxl.load_workbook('sobs.xlsm')
+wb = openpyxl.load_workbook('VincSupVist.xlsm')
+wb1 = openpyxl.load_workbook('VincSupVist.xlsm')
 
 driver = webdriver.Chrome()
 
