@@ -1,5 +1,6 @@
 ﻿#  -*- coding: utf-8 -*-
 import os
+import shutil
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -15,6 +16,16 @@ try:
 except ImportError:  # python3.x
     izip = zip
 
+if os.path.isfile('ExecucaoGommobile.xlsm'):  # Verifica se o arquivo existe, caso sim, deleta a versão antiga e cria nova cópia
+    os.remove('ExecucaoGommobile.xlsm')
+    shutil.copy2('ProgramaSobsExecucao - Template.xlsm', 'ExecucaoGommobile.xlsm')
+    os.startfile('ExecucaoGommobile.xlsm')
+else:  # Caso não existe, apenas cria nova cópia
+    shutil.copy2('ProgramaSobsExecucao - Template.xlsm', 'ExecucaoGommobile.xlsm')
+    os.startfile('ExecucaoGommobile.xlsm')
+
+input('Enter any key to continue...')
+
 #  Acessa os dados de login fora do script, salvo numa planilha existente, para proteger as informações de credenciais
 dados = openpyxl.load_workbook('C:\\gomnet.xlsx')
 login = dados['Plan1']
@@ -22,8 +33,8 @@ url = 'http://gomnet.ampla.com/'
 url2 = 'http://gomnet.ampla.com/AcompanhamentoObras.aspx'
 username = login['A1'].value
 password = login['A2'].value
-wb = openpyxl.load_workbook('sobs.xlsm')
-wb1 = openpyxl.load_workbook('sobs.xlsm')
+wb = openpyxl.load_workbook('ExecucaoGommobile.xlsm')
+wb1 = openpyxl.load_workbook('ExecucaoGommobile.xlsm')
 
 chrome_options = Options()
 chrome_options.add_argument("--headless")
