@@ -46,11 +46,11 @@ if __name__ == '__main__':
                 try:
                     energ = driver.find_element_by_xpath('//*[@id="Label_Data_Energizacao" and text() != ""]')
                     if energ.is_displayed():
-                        log = open("status.txt", "a")
+                        log = open("VerificaSobEnergizadaOutput.txt", "a")
                         log.write(cell2.value + ' energizada' + '\n')
                         log.close()
                 except NoSuchElementException:
-                        log1 = open("status.txt", "a")
+                        log1 = open("VerificaSobEnergizadaOutput.txt", "a")
                         log1.write(cell2.value + ' não energizada' + '\n')
                         log1.close()
                         continue
