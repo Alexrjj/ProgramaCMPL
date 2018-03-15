@@ -24,7 +24,7 @@ loop = True
 
 while loop:  # Enquanto loop for True, o código continuará sendo executado
     print_menu()  # Exibe o menu
-    choice = input("Enter your choice [1-5]: ")
+    choice = input("Escolha uma opção [1-11]: ")
 
     if choice == '1':
         os.system('makeFolderSubfolder.py')
