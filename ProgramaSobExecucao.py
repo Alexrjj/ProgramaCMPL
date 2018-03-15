@@ -43,7 +43,6 @@ if __name__ == '__main__':
     for sheet in wb.worksheets:
         # Busca o menu "Obras" e acessa o submenu "Acompanhamento de Obra"
         driver.get(url2)
-        # driver.save_screenshot('github.png')
         # Insere o valor na textbox "Número SOB" e realiza a consulta
         sob = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, 'ctl00$ContentPlaceHolder1$TextBox_NumSOB')))
         try:
@@ -51,7 +50,6 @@ if __name__ == '__main__':
         except TypeError:
             print("Não há sob a ser programada. Fim da execução.")
             break
-        # driver.save_screenshot('github.png')
         driver.find_element_by_id('ctl00_ContentPlaceHolder1_ImageButton_Enviar').click()
 
         # Clica no botão "Programação da Obra"
@@ -69,15 +67,12 @@ if __name__ == '__main__':
             break
 
         # Modifica o atributo CSS da textbox para torná-la editável e insere o valor da variável codTurma
-        # driver.save_screenshot('github.png')
         turma = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#ctl00_ContentPlaceHolder1_txtBoxTurma')))
         driver.execute_script("arguments[0].setAttribute('onkeydown','return true;')", turma)
         turma.send_keys(str(sheet['F2'].value))
-        # driver.save_screenshot('github.png')
         servico = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#ctl00_ContentPlaceHolder1_txtBoxRespServico')))
         driver.execute_script("arguments[0].setAttribute('onkeydown','return true;')", servico)
         servico.send_keys(str(sheet['G2'].value))
-        # driver.save_screenshot('github.png')
         servicoSup = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#ctl00_ContentPlaceHolder1_txtBoxServicoSuplente')))
         driver.execute_script("arguments[0].setAttribute('onkeydown','return true;')", servicoSup)
         servicoSup.send_keys(str(sheet['G2'].value))
@@ -150,7 +145,6 @@ if __name__ == '__main__':
         # Identifica o menu "Viagem" e seleciona a opção "Não"
         viagem = Select(driver.find_element_by_id('ctl00_ContentPlaceHolder1_DropDownList_Viagem'))
         viagem.select_by_visible_text('NÃO')
-        # driver.save_screenshot('github.png')
         # Clica no botão "Adicionar Programação"
         driver.find_element_by_id('ctl00_ContentPlaceHolder1_btnAdicionarProgramacao').click()
         row = 0
