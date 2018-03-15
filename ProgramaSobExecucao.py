@@ -41,7 +41,7 @@ if __name__ == '__main__':
     submit_button = driver.find_element_by_id('ImageButton_Login').click()
 
     for sheet in wb.worksheets:
-        # Busca o menu "Obras" e acessa o submenu "Acompanhamento de Obra"
+        # Acessa o endereço "Acompanhamento de Obra"
         driver.get(url2)
         # Insere o valor na textbox "Número SOB" e realiza a consulta
         sob = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, 'ctl00$ContentPlaceHolder1$TextBox_NumSOB')))
@@ -156,7 +156,7 @@ if __name__ == '__main__':
                     webdriver.ActionChains(driver).send_keys(Keys.TAB).perform()
                     webdriver.ActionChains(driver).send_keys(str(cell2.value)).perform()
                 except NoSuchElementException:  # Caso não encontre, abre o arquivo txt e registra a data, o código baremo e sua quantidade
-                    log = open("BaremosPendentes.txt", "a")
+                    log = open("BaremosPendentesExecucao.txt", "a")
                     log.write(str(sheet['H2'].value) + " " + str(sheet['A2'].value) + " " + str(cell.value) + " " + str(cell2.value) + "\n")
                     log.close()
                 continue
