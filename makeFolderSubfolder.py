@@ -3,6 +3,17 @@ import openpyxl
 import time
 import shutil
 
+if os.path.isfile('pastas.xlsx'):  # Verifica se o arquivo existe, caso sim, deleta a versão antiga e cria nova cópia
+    os.remove('pastas.xlsx')
+    shutil.copy2('pastas - template.xlsx', 'pastas.xlsx')
+    os.startfile('pastas.xlsx')
+else:  # Caso não existe, apenas cria nova cópia
+    shutil.copy2('pastas - template.xlsx', 'pastas.xlsx')
+    os.startfile('pastas.xlsx')
+
+input('Enter any key to continue...')
+
+wb = openpyxl.load_workbook('pastas.xlsx')
 for sheet in wb.worksheets:
     path = sheet['A2'].value
     for row in sheet.iter_cols(min_row=2, min_col=2, max_col=2):
