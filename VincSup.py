@@ -4,6 +4,19 @@ from selenium import webdriver
 import openpyxl
 from selenium.webdriver.support.ui import Select
 import time
+import os
+import shutil
+
+
+if os.path.isfile('VincSupVist.txt'):  # Verifica se o arquivo existe, caso sim, deleta a versão antiga e cria nova cópia
+    os.remove('VincSupVist.txt')
+    open('VincSupVist.txt', 'a').close()
+else:  # Caso não existe, apenas cria nova cópia
+    open('VincSupVist.txt', 'a').close()
+
+os.startfile('VincSupVist.txt')
+
+input('Enter any key to continue...')
 
 #  Acessa os dados de login fora do script, salvo numa planilha existente, para proteger as informações de credenciais
 dados = openpyxl.load_workbook('C:\\gomnet.xlsx')
