@@ -39,7 +39,7 @@ if __name__ == '__main__':
     driver.get(urlVincSup)
 
     # Insere o número da Sob em seu respectivo campo e realiza a busca
-    with open('sobs.txt') as data:
+    with open('VincSupVist.txt') as data:
         datalines = (line.strip('\r\n') for line in data)
         for line in datalines:
             driver.find_element_by_id('ctl00_ContentPlaceHolder1_TextBox_SOB').clear()
@@ -60,7 +60,7 @@ if __name__ == '__main__':
                 except NoAlertPresentException:
                     continue
             except NoSuchElementException:
-                log = open("log.txt", "a")
+                log = open("VincSupOutput.txt", "a")
                 log.write(line + ' não vinculada. ' + '\n')
                 log.close()
                 continue
