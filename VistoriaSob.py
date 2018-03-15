@@ -3,7 +3,6 @@ from selenium.common.exceptions import NoSuchElementException, NoAlertPresentExc
 from selenium import webdriver
 import openpyxl
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
@@ -44,7 +43,7 @@ if __name__ == '__main__':
     driver.get(urlVistSob)
 
     # Insere o número da Sob em seu respectivo campo e realiza a busca
-    with open('sobs.txt') as data:
+    with open('VincSupVist.txt') as data:
         datalines = (line.strip('\r\n') for line in data)
         for line in datalines:
             buscaVist = driver.window_handles[0]
@@ -93,7 +92,7 @@ if __name__ == '__main__':
                     driver.close()
                 driver.switch_to_window(buscaVist)
             except NoSuchElementException:
-                falhaVist = open('log.txt', 'a')
+                falhaVist = open('VistoriaSobOutput.txt', 'a')
                 falhaVist.write(line + ' não encontrada' + '\n')
                 falhaVist.close()
                 continue
