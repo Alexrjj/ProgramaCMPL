@@ -1,6 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 import openpyxl
 import time
+import shutil
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -17,8 +18,8 @@ username = login['A1'].value
 password = login['A2'].value
 mobUser = login['B1'].value
 mobPass = login['B2'].value
-wb = openpyxl.load_workbook('sobs.xlsm')
-wb1 = openpyxl.load_workbook('sobs.xlsm')
+wb = openpyxl.load_workbook('ExecucaoGommobile.xlsm')
+wb1 = openpyxl.load_workbook('ExecucaoGommobile.xlsm')
 
 driver = webdriver.Chrome()
 
@@ -91,7 +92,7 @@ if __name__ == '__main__':
             webdriver.ActionChains(driver).send_keys(Keys.TAB).perform()
             webdriver.ActionChains(driver).send_keys(Keys.SPACE).perform()
         except TimeoutException:  # Caso não encontre a SOB, abre o arquivo txt e registra o número da SOB não movimentada.
-            log = open("ErroSobs.txt", "a")
+            log = open("GommobileOutput.txt", "a")
             log.write(str(sheet['A2'].value) + "\n")
             log.close()
             continue
