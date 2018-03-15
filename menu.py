@@ -27,27 +27,27 @@ while loop:  # Enquanto loop for True, o código continuará sendo executado
     choice = input("Enter your choice [1-5]: ")
 
     if choice == '1':
-
+        os.system('makeFolderSubfolder.py')
     elif choice == '2':
-
+        os.system('VincSup.py')
     elif choice == '3':
-
+        os.system('VistoriaSob.py')
     elif choice == '4':
-
+        os.system('ProgramaSobVistoria.py')
     elif choice == '5':
-
+        os.system('ProgramaSobExecucao.py')
     elif choice == '6':
-
+        os.system('GOMMOBILE.py')
     elif choice == '7':
-
+        os.system('ExtraiSobStatus.py')
     elif choice == '8':
-
+        os.system('ExtraiSobTrabalho.py')
     elif choice == '9':
-
+        os.system('VerificaSobEnergizada.py')
     elif choice == '10':
-
+        os.system('DownloadDWG.py')
     elif choice == '11':
-
+        os.system('DownloadSGD.py')
     elif choice == 'x':
         loop = False  # Esta opção fará com que a variável loop seja False, encerrando o programa
     else:
